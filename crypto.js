@@ -19,10 +19,11 @@ let decrypt = (en) => {
   return bytes.toString(CryptoJS.enc.Utf8);
 }
 
-let enc = encrypt('KhoaPham 123 123');
-console.log('Chuoi ma hoa',enc);
-console.log('Chuoi da giai ma', decrypt(enc));
+// let enc = encrypt('KhoaPham 123 123');
+// console.log('Chuoi ma hoa',enc);
+// console.log('Chuoi da giai ma', decrypt(enc));
 
+module.exports = {encrypt, decrypt};
 //chuc nang dang ky va dang nhap
 //username, password, sdt
 //

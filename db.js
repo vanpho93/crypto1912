@@ -1,4 +1,5 @@
 var pg = require('pg');
+let {decrypt, encrypt} = require('./crypto.js');
 
 var config = {
   user: 'postgres',
@@ -27,14 +28,17 @@ function query(sql, data, cb){
 let insertUser = (username, password, phone, cb) => {
   let sql = `INSERT INTO public."User"(username, "password", phone)
 	VALUES ($1, $2, $3)`;
-  query(sql, [username, password, phone], cb);
+  query(sql, [username, encrypt(password), phone], cb);
 }
 
 let checkUser = (username, password, cb) => {
-  let sql = `SELECT * FROM "User" WHERE username = $1 AND "password" = $2`;
-  query(sql, [username, password], (err, result) => {
+  let sql = `SELECT * FROM "User" WHERE username = $1`;
+  query(sql, [username], (err, result) => {
     if(err) return cb(err);
     if(result.rowCount != 1) return cb(new Error('User khong ton tai'));
+    if(password != decrypt(result.rows[0].password)) {
+      return cb(new Error('Kiem tra username password'));
+    }
     cb(undefined);
   });
 }
