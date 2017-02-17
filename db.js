@@ -48,3 +48,5 @@ let checkUser = (username, password, cb) => {
 //   if(err) return console.log(err);
 //   console.log('Dang nhap thanh cong');
 // });
+
+module.exports = {checkUser, insertUser};

@@ -2,6 +2,7 @@ let express = require('express');
 let app = express();
 app.set('view engine', 'ejs');
 app.set('views', './views');
+let parser = require('body-parser').urlencoded({extended: false});
 
 app.listen(3000, () => console.log('Server started'));
 
