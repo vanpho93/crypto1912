@@ -18,3 +18,11 @@ let decrypt = (en) => {
   let bytes  = CryptoJS.AES.decrypt(en, secret);
   return bytes.toString(CryptoJS.enc.Utf8);
 }
+
+let enc = encrypt('KhoaPham 123 123');
+console.log('Chuoi ma hoa',enc);
+console.log('Chuoi da giai ma', decrypt(enc));
+
+//chuc nang dang ky va dang nhap
+//username, password, sdt
+//
