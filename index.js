@@ -14,7 +14,11 @@ app.get('/dangnhap', (req, res) => res.render('dangnhap'));
 app.get('/dangky', (req, res) => res.render('dangky'));
 
 app.post('/xulydangnhap', parser, (req, res) => {
-  res.send('Da dang nhap');
+  let {username, password} = req.body;
+  checkUser(username, password, err => {
+    if(err) return res.send(err + '');
+    res.send('Dang nhap thanh cong');
+  });
 });
 
 app.post('/xulydangky', parser, (req, res) => {
